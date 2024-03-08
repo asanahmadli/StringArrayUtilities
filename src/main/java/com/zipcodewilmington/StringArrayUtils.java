@@ -1,5 +1,7 @@
 package com.zipcodewilmington;
 
+import java.util.*;
+
 /**
  * Created by leon on 1/29/18.
  */
@@ -25,7 +27,8 @@ public class StringArrayUtils {
      * @return last element in specified array
      */ // TODO
     public static String getLastElement(String[] array) {
-        return null;
+
+        return array[array.length-1];
     }
 
     /**
@@ -33,7 +36,7 @@ public class StringArrayUtils {
      * @return second to last element in specified array
      */ // TODO
     public static String getSecondToLastElement(String[] array) {
-        return null;
+        return array[array.length-2];
     }
 
     /**
@@ -42,7 +45,14 @@ public class StringArrayUtils {
      * @return true if the array contains the specified `value`
      */ // TODO
     public static boolean contains(String[] array, String value) {
-        return false;
+        boolean flag = false;
+        for(String str:array){
+            if(str.equals(value)){
+                flag=true;
+            }
+
+        }
+        return flag;
     }
 
     /**
@@ -50,6 +60,10 @@ public class StringArrayUtils {
      * @return an array with identical contents in reverse order
      */ // TODO
     public static String[] reverse(String[] array) {
+
+        String reverseOrder  = "";
+
+
         return null;
     }
 
@@ -58,7 +72,13 @@ public class StringArrayUtils {
      * @return true if the order of the array is the same backwards and forwards
      */ // TODO
     public static boolean isPalindromic(String[] array) {
-        return false;
+        int number = 0;
+        for(int i=0;i<array.length;i++){
+            if(array[i]==array[array.length-1-i]){
+                number++;
+            }
+        }
+        return number==array.length;
     }
 
     /**
@@ -66,7 +86,14 @@ public class StringArrayUtils {
      * @return true if each letter in the alphabet has been used in the array
      */ // TODO
     public static boolean isPangramic(String[] array) {
-        return false;
+        Set<Character> st = new HashSet<>();
+        for(int i=0;i<array.length;i++){
+            char[] str = array[i].toLowerCase().replaceAll(" ","").toCharArray();
+            for(int j=0;j<str.length;j++){
+                st.add(str[j]);
+            }
+        }
+        return st.size()==26;
     }
 
     /**
@@ -75,7 +102,13 @@ public class StringArrayUtils {
      * @return number of occurrences the specified `value` has occurred
      */ // TODO
     public static int getNumberOfOccurrences(String[] array, String value) {
-        return 0;
+        int occurence = 0;
+        for(int i=0;i<array.length;i++){
+            if(array[i].equals(value)){
+                occurence++;
+            }
+        }
+        return occurence;
     }
 
     /**
@@ -84,16 +117,53 @@ public class StringArrayUtils {
      * @return array with identical contents excluding values of `value`
      */ // TODO
     public static String[] removeValue(String[] array, String valueToRemove) {
-        return null;
+        ArrayList<String> arr = new ArrayList<>(List.of(array));
+        int i=0;
+        while (i<arr.size()) {
+            if (arr.get(i).equals(valueToRemove)) {
+                arr.remove(i);
+
+            }
+            i++;
+        }
+        String[] a = new String[arr.size()];
+
+        int m = 0;
+        while (m<a.length){
+            a[m]=arr.get(m);
+            m++;
+        }
+
+        return a;
     }
+
+    public static void main(String[] args) {
+
+    }
+
 
     /**
      * @param array array of chars
      * @return array of Strings with consecutive duplicates removes
      */ // TODO
     public static String[] removeConsecutiveDuplicates(String[] array) {
-        return null;
+
+        ArrayList<String> arr = new ArrayList<>(List.of(array));
+        for(int i=0;i<arr.size()-1;i++) {
+            while (i + 1 != arr.size() && arr.get(i).equals(arr.get(i + 1))) {
+                arr.remove(i);
+            }
+        }
+
+        String[] b = new String[arr.size()];
+        for(int i=0;i<arr.size();i++){
+            b[i]=arr.get(i);
+        }
+        return b;
     }
+
+
+
 
     /**
      * @param array array of chars
