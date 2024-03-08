@@ -61,12 +61,47 @@ public class StringArrayUtils {
      */ // TODO
     public static String[] reverse(String[] array) {
 
-        String reverseOrder  = "";
+       String[] arr = array;
+
+        String[] reverse = new String[arr.length];
+
+        for(int i=0;i<arr.length;i++){
+
+            reverse[i]=arr[arr.length-i-1];
+        }
 
 
-        return null;
+        return reverse;
     }
 
+    public static void main(String[] args) {
+        String[] array = {"a", "a", "a", "b", "c", "c", "a", "a", "d"};
+        String[] expected = {"aaa", "b", "cc", "aa", "d"};
+        ArrayList<String> list = new ArrayList<>(List.of(array));
+        ArrayList<String> list1 = new ArrayList<>(List.of(array));
+        StringBuilder sb = new StringBuilder();
+
+        for(int i=0;i<list.size();i++){
+
+            for(int m = 0;m<list.size();m++){
+
+                if(list.get(i).equals(list.get(m))){
+                    sb.append(list.get(m));
+                    list.remove(list.get(i));
+                }
+
+            }
+
+            list1.add(sb.toString());
+            sb.delete(0,sb.length());
+
+
+        }
+        System.out.println(list1.toString());
+
+
+
+    }
     /**
      * @param array array of String objects
      * @return true if the order of the array is the same backwards and forwards
@@ -137,9 +172,7 @@ public class StringArrayUtils {
         return a;
     }
 
-    public static void main(String[] args) {
 
-    }
 
 
     /**
@@ -170,7 +203,20 @@ public class StringArrayUtils {
      * @return array of Strings with each consecutive duplicate occurrence concatenated as a single string in an array of Strings
      */ // TODO
     public static String[] packConsecutiveDuplicates(String[] array) {
-        return null;
+
+        StringBuilder sb = new StringBuilder();
+        ArrayList<String> str = new ArrayList<>(List.of(array));
+        ArrayList<String> str1 = new ArrayList<>();
+        for(int i=1;i<str.size();i++){
+
+            while (str.get(i-1).equals(str.get(i))){
+               sb.append(str.get(i));
+               str.remove(i);
+            }
+            str1.add(sb.toString());
+
+        }
+        return str1.toArray(new String[0]);
     }
 
 
